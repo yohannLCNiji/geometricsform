@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<catalogue>
+	<formation>JAVA</formation>
+	<formation>J2EE</formation>
+	<formation>STRUTS</formation>
+	<formation>HIBERNATE</formation>
+	<formation>SPRING</formation>
+	<formation>SOA</formation>
+</catalogue>
