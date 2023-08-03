@@ -1,7 +1,9 @@
 import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import geometricsform.models.Cube;
 
 public class CubeDaoImpl implements CubeDao {
 	
@@ -12,25 +14,28 @@ public class CubeDaoImpl implements CubeDao {
 	}
 	
 	@Override
-	public void getId(Integer id) {
+	public Cube getId(Integer id) {
+		Cube cube = new Cube();
 		Connection connection = null;
-		PreparedStatement prepareStatement = null;
+		Statement statement = null;
+		ResultSet result = null;
 		
 		try {
 			connection = daoFactory.getConnection();
-			prepareStatement = connection.prepareStatement("SELECT * FROM cube WHERE id_cube = " + id);
-			
+			statement = connection.createStatement();
+			result = statement.executeQuery( "SELECT * FROM cube WHERE id_cube = " + id);
+
 			//Si il n'existe pas de cube en base de données 
-//			if(result.first()) {
-//				cube = new Cube(
-//								id, 
-//								result.getString("colorCube"),
-//								result.getString("nameCube")
-//								);
-//			}
-			}catch  (SQLException e){
-				 e.printStackTrace();
+			if(result.first()) {
+				cube = new Cube(
+								id, 
+								result.getString("colorCube"),
+								result.getString("nameCube")
+								);
 			}
-	
+		}catch  (SQLException e){
+			 e.printStackTrace();
+		}
+		return cube;	
 	}
 }

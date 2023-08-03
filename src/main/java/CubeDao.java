@@ -1,9 +1,11 @@
+import geometricsform.models.Cube;
 
 public interface CubeDao {
 	
-	default void getId(Integer id) {
-		
-	}
-
+	//READ methode
+	Cube getId(Integer id);
 	
-}
+	//TODO methode CREATE
+    //TODO methode DELETE
+    //TODO methode UPDATE
+}    

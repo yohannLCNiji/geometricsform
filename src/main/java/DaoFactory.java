@@ -15,6 +15,7 @@ public class DaoFactory {
 		this.url = url;
 		this.user = user; 
 		this.mdp = mdp; 
+	}
 	
 	//Méthode qui va nous retourner notre instance de connexion
 	//et la créer si elle n'existe pas 
@@ -25,11 +26,15 @@ public class DaoFactory {
 			
 		}
 		
-		DaoFactory instance = new DaoFactory("jdbc:postgresql://localhost:5434/GeometricForm", "postgres", "admin");
+		DaoFactory instance = new DaoFactory(
+				"jdbc:postgresql://localhost:5434/GeometricForm", "postgres", "admin");
 		
+		return instance;
+	}
+	
 	public Connection getConnection() throws SQLException {
 	        return DriverManager.getConnection(url, user, mdp);
-	    }
+    }
 
     // Récupération du Dao
     public CubeDao getUtilisateurDao() {
